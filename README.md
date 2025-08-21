@@ -8,31 +8,32 @@ It checks DNS, MX records, TLS, DANE, and policy configurations (SPF, DKIM, DMAR
 ## ✨ Features
 
 - 🔍 Resolve MX records for a domain
-- 🌐 Detect cloud/hosted MX (Microsoft, Google, etc.) and skip redundant tests
+- 🌐 Detect cloud/hosted MX (Microsoft 365, Google Workspace, etc.) and skip redundant checks
 - 📡 Port & TLS checks:
   - 25 (SMTP)
   - 465 (SMTPS)
-  - 587 (Submission)
+  - 587 (Submission, if open)
   - 993 (IMAPS)
 - 🔑 Validate **DANE/TLSA** records
 - 🔒 Detect TLS protocol support (1.0 → 1.3)
 - 📜 Parse and validate X.509 certificates
-- 📨 Check **SPF**, **DKIM**, **DMARC**
+- 📨 Check **SPF**, **DMARC** (DKIM is inferred via keys), **ARC**
 - 📑 Fetch and validate **MTA-STS** policies (handles CRLF/BOM issues)
 - 📊 Check **TLS-RPT**, **BIMI**, **CAA**, and **DNSSEC**
-- 🚫 Highlight weak or missing configurations
+- 🚫 Highlight weak, missing, or legacy configurations
+- ⚡ Parallel mode for faster scans
 
 ---
 
 ## ⚡ Requirements
 
-- `bash` (>= 4.0)
+- `bash` (>= 3.0, tested on macOS’s Bash 3 and GNU Bash 4+)
 - `dig` (bind-utils / dnsutils)
 - `curl`
 - `openssl`
 - `nc` or `ncat`
 
-⚠️ **Note:** MailAudit has only been tested on **osx** & **Ubuntu/Debian** so far.  
+⚠️ **Note:** MailAudit has been tested on **macOS** and **Ubuntu/Debian**.  
 It should also work on other Linux distros, but you may need to install the required dependencies manually.
 
 On Debian/Ubuntu:
@@ -56,19 +57,40 @@ Clone the repo:
 ```bash
 git clone https://github.com/lulzkiller666/MailAudit.git
 cd MailAudit
-chmod +x mailaudit.sh
+chmod +x MailAudit.sh
 ```
 
-Run a scan:
+Run a simple scan against a domain (auto-detect MX):
 
 ```bash
-./mailaudit.sh example.com
+./MailAudit.sh example.com
 ```
 
-Example output:
+Run against a domain and its MX (explicit):
+
+```bash
+./MailAudit.sh -D example.com --mx
+```
+
+Run directly against a host:
+
+```bash
+./MailAudit.sh -H mail.example.com
+```
+
+Run with parallel scanning enabled:
+
+```bash
+./MailAudit.sh example.com --parallel
+```
+
+---
+
+### Example output
 
 <img width="825" height="913" alt="image" src="https://github.com/user-attachments/assets/d10cde85-d179-4b14-bb47-664bf47a2ce9" />
 
+---
 
 ## 📖 References
 
