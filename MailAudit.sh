@@ -152,7 +152,7 @@ readarray_compat() {
   while IFS= read -r __l; do
     [ -n "$__l" ] && __a+=("$__l")
   done < <("$@")
-  if [ ${#__a[@]:-0} -eq 0 ]; then
+  if [ ${#__a[@]} -eq 0 ]; then
     eval "$__n=()"
   else
     eval "$__n=(\"\${__a[@]}\")"
