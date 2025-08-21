@@ -54,7 +54,7 @@ sudo yum install bind-utils curl openssl nmap-ncat
 Clone the repo:
 
 ```bash
-git clone https://github.com/<youruser>/MailAudit.git
+git clone https://github.com/lulzkiller666/MailAudit.git
 cd MailAudit
 chmod +x mailaudit.sh
 ```
