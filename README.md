@@ -32,8 +32,8 @@ It checks DNS, MX records, TLS, DANE, and policy configurations (SPF, DKIM, DMAR
 - `openssl`
 - `nc` or `ncat`
 
-⚠️ **Note:** MailAudit has only been tested on **osx** so far.  
-It should also work on Linux, but you may need to install the required dependencies manually.
+⚠️ **Note:** MailAudit has only been tested on **osx** & **Ubuntu/Debian** so far.  
+It should also work on other Linux distros, but you may need to install the required dependencies manually.
 
 On Debian/Ubuntu:
 
@@ -54,7 +54,7 @@ sudo yum install bind-utils curl openssl nmap-ncat
 Clone the repo:
 
 ```bash
-git clone https://github.com/<youruser>/MailAudit.git
+git clone https://github.com/lulzkiller666/MailAudit.git
 cd MailAudit
 chmod +x mailaudit.sh
 ```
